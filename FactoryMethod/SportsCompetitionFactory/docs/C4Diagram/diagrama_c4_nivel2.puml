@@ -1,0 +1,17 @@
+@startuml Sport Competition Factory Method C4 level 2
+!define C4P
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_TOP_DOWN()
+
+Person(usuario, "Usuário")
+
+System_Boundary(sb, "Sistema de Competições Esportivas") {
+    Container(aplicacao, "Aplicação", "Java Application", "Gerencia competições esportivas usando Factory Method")
+    ContainerDb(bancoDeDados, "Banco de Dados", "SQL Database", "Armazena dados das competições, modalidades e resultados")
+}
+
+Rel(usuario, aplicacao, "Usa")
+Rel(aplicacao, bancoDeDados, "Lê e escreve dados")
+
+@enduml

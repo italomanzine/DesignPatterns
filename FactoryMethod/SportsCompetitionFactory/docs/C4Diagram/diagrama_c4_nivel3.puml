@@ -1,0 +1,22 @@
+@startuml Sport Competition Factory Method C4 level 3
+!define C4P
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_TOP_DOWN()
+
+Container_Boundary(aplicacao, "Aplicação") {
+    Component(interfaceUsuario, "Interface de Usuário", "Permite ao usuário interagir com o sistema")
+    Component(competicaoFactory, "CompeticaoFactory", "Método fábrica abstrato para criar competições")
+    Component(natacaoFactory, "NatacaoFactory", "Cria instâncias de competições de natação")
+    Component(atletismoFactory, "AtletismoFactory", "Cria instâncias de competições de atletismo")
+    Component(natacao, "Natacao", "Implementação de Competicao para natação")
+    Component(atletismo, "Atletismo", "Implementação de Competicao para atletismo")
+}
+
+Rel(interfaceUsuario, competicaoFactory, "Usa")
+Rel(competicaoFactory, natacaoFactory, "Cria")
+Rel(competicaoFactory, atletismoFactory, "Cria")
+Rel(natacaoFactory, natacao, "Cria")
+Rel(atletismoFactory, atletismo, "Cria")
+
+@enduml

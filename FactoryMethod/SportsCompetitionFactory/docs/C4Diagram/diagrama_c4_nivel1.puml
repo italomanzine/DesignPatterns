@@ -1,0 +1,13 @@
+@startuml Sport Competition Factory Method C4 level 1
+!define C4P
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_TOP_DOWN()
+
+Person(usuario, "Usuário")
+
+System(sistema, "Sistema de Competições Esportivas", "Permite criar e gerenciar competições esportivas")
+
+Rel(usuario, sistema, "Usa")
+
+@enduml

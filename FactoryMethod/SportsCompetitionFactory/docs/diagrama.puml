@@ -1,0 +1,34 @@
+@startuml Sport Competition Factory Method UML
+interface Competicao {
+    +void realizarProva()
+}
+
+class Natacao {
+    +void realizarProva()
+}
+
+class Atletismo {
+    +void realizarProva()
+}
+
+abstract class CompeticaoFactory {
+    +Competicao criarCompeticao()
+}
+
+class NatacaoFactory {
+    +Competicao criarCompeticao()
+}
+
+class AtletismoFactory {
+    +Competicao criarCompeticao()
+}
+
+Competicao <|.. Natacao
+Competicao <|.. Atletismo
+CompeticaoFactory <|-- NatacaoFactory
+CompeticaoFactory <|-- AtletismoFactory
+CompeticaoFactory ..> Competicao : criarCompeticao()
+NatacaoFactory ..> Natacao : criarCompeticao()
+AtletismoFactory ..> Atletismo : criarCompeticao()
+
+@enduml
