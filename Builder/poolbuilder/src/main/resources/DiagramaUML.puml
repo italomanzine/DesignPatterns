@@ -1,0 +1,79 @@
+@startuml
+
+class Pool {
+    - String size
+    - String depth
+    - int lanes
+    + setSize(String size)
+    + setDepth(String depth)
+    + setLanes(int lanes)
+    + toString() : String
+}
+
+interface PoolBuilder {
+    + buildSize()
+    + buildDepth()
+    + buildLanes()
+    + getResult() : Pool
+}
+
+class OlympicPoolBuilder {
+    - Pool pool
+    + buildSize()
+    + buildDepth()
+    + buildLanes()
+    + getResult() : Pool
+}
+
+class SemiOlympicPoolBuilder {
+    - Pool pool
+    + buildSize()
+    + buildDepth()
+    + buildLanes()
+    + getResult() : Pool
+}
+
+class YardPoolBuilder {
+    - Pool pool
+    + buildSize()
+    + buildDepth()
+    + buildLanes()
+    + getResult() : Pool
+}
+
+class PoolDirector {
+    - PoolBuilder builder
+    + PoolDirector(PoolBuilder builder)
+    + constructPool()
+}
+
+class Client {
+    + main()
+}
+
+PoolBuilder <|.. OlympicPoolBuilder
+PoolBuilder <|.. SemiOlympicPoolBuilder
+PoolBuilder <|.. YardPoolBuilder
+
+PoolDirector --> PoolBuilder
+
+Pool ..> OlympicPoolBuilder : creates
+Pool ..> SemiOlympicPoolBuilder : creates
+Pool ..> YardPoolBuilder : creates
+
+Client --> PoolDirector : uses
+Client ..> OlympicPoolBuilder : sets
+
+object olympicPool
+object semiOlympicPool
+object yardPool
+
+olympicPool : Pool
+semiOlympicPool : Pool
+yardPool : Pool
+
+olympicPool ..> OlympicPoolBuilder : created by
+semiOlympicPool ..> SemiOlympicPoolBuilder : created by
+yardPool ..> YardPoolBuilder : created by
+
+@enduml
